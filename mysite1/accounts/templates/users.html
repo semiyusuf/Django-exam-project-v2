@@ -1,0 +1,14 @@
+<h2>ALL USERS</h2>
+
+{% if users %}
+<ul>
+  {% for u in users %}
+  <li>
+    {{u.username}} {%if u.email%} - {{u.email}}{%endif%} {%if u.is_staff%}
+    (staff) {%endif%} {% if u.is_superuser %} (admin){% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{%else%}
+<p>No users found.</p>
+{% endif %}

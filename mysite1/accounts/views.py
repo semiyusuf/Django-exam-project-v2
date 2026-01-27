@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
 
 # Create your views here.
 def register_view(request):
@@ -25,3 +27,8 @@ def login_view(request):
             login(request, user)
             return redirect('home')
     return render(request, 'login.html')
+
+def user_list(request):
+    user = get_user_model()
+    users = User.objects.all().order_by("id")
+    return render(request, "users.html", {"users":users})
