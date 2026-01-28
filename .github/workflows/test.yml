@@ -19,6 +19,18 @@ jobs:
       - name: Run Django test
         run: docker compose exec -T web python mysite1/manage.py test
 
-      #- name: Stop containers
-      #if: always()
-      #run: docker compose down
+      - name: Show compose status
+        run: docker compose ps
+
+      - name: Show all containers
+        run: docker ps -a
+
+      - name: Show built images
+        run: docker image ls
+
+      - name: Show web logs (last 50 lines)
+        run: docker compose logs --tail 50 web
+
+      - name: Stop containers
+        if: always()
+        run: docker compose down
