@@ -4,6 +4,10 @@ __pycache__/
 env/
 venv/
 
+# Environments
+.env
+.env*
+
 # Django
 db.sqlite3
 static/

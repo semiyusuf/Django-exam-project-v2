@@ -1,0 +1,15 @@
+version: "3.9"
+
+#My docker service which builds a container for my django-project
+services:
+  web:
+    build: .
+    container_name: django_app_v2
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./mysite1/db.sqlite3:/app/mysite1/db.sqlite3
+      - .:/app
+      - ./static:/app/staticfiles # For the command collectstatic
+    environment:
+      - PYTHONUNBUFFERED=1

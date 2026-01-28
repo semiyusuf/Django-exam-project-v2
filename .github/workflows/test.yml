@@ -1,0 +1,22 @@
+name: Test Project
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v5
+
+      - name: Build Docker image
+        run: docker compose up -d --build
+
+      - name: Run Django test
+        run: docker compose exec -T web python mysite/manage.py test
+      - name: Stop containers
+        if: always()
+        run: docker compose down
