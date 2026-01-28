@@ -18,6 +18,7 @@ jobs:
 
       - name: Run Django test
         run: docker compose exec -T web python mysite1/manage.py test
-      - name: Stop containers
-        if: always()
-        run: docker compose down
+
+      #- name: Stop containers
+      #if: always()
+      #run: docker compose down
